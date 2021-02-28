@@ -152,7 +152,7 @@ for (let i = 0; i < oldPointObject[item].length; i++) {
   newPointStructure[(oldPointObject[item][i]).toLowerCase()] = item;
 }
 
-//newPointStructure[' '] = 0;
+newPointStructure[' '] = 0;
 }
 
 return newPointStructure;
