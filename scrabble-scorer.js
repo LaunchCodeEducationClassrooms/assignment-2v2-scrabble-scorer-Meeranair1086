@@ -67,29 +67,7 @@ for (let i = 0; i < vowelBonusScore.length; i++) {
 	return console.log(`Score for ${vowelBonusScore}: ${newvowelScoreValue} \n`);
   }
 
-  let simpleObject = {
-    'name': 'Simple Score',
-    'Description':'One point per character',
-    'score': function (word1){
-      simpleScorer(word1)
-    return }
-  };
-
-  let vowelBonusObject = {
-    'name': 'Vowel Bonus Score',
-    'Description':'Vowels are worth 3 points',
-    'score': function (word1){
-      vowelBonusScorer(word1);
-    return }
-  };
   
-  let scrabbleObject = {
-    'name': 'Scrabble Score',
-    'Description':'Uses scrabble point system',
-    'score': function (word){
-      scrabbleScorer(word);
-    return  }
-  }
 
 
 function oldScrabbleScorer(oneWord){
@@ -109,7 +87,33 @@ for (let i = 0; i < scrabbleScore.length; i++) {
 
 let scrabbleScore;
 
-const scoringAlgorithms = [simpleObject,vowelBonusObject,scrabbleObject];
+const scoringAlgorithms = [
+  
+  simpleObject = {
+    'name': 'Simple Score',
+    'Description':'One point per character',
+    'score': function (word1){
+      simpleScorer(word1)
+    return }
+  },
+
+  vowelBonusObject = {
+    'name': 'Vowel Bonus Score',
+    'Description':'Vowels are worth 3 points',
+    'score': function (word1){
+      vowelBonusScorer(word1);
+    return }
+  },
+  
+  scrabbleObject = {
+    'name': 'Scrabble Score',
+    'Description':'Uses scrabble point system',
+    'score': function (word){
+      scrabbleScorer(word);
+    return  }
+  }
+  
+  ];
 
 function scorerPrompt(wordInput2) {
   
