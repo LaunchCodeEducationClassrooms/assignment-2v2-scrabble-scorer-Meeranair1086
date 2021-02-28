@@ -105,13 +105,13 @@ const scoringAlgorithms = [
    {
     'name': 'Vowel Bonus Score',
     'Description':'Vowels are worth 3 points',
-    'scoringFunction': vowelBonusScorer
+    'scoringFunction': vowelBonusScore
   },
   
    {
     'name': 'Scrabble Score',
     'Description':'Uses scrabble point system',
-    'scoringFunction': scrabbleScorer
+    'scoringFunction': scrabbleScore
   }
   
   ];
