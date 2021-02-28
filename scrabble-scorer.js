@@ -38,8 +38,7 @@ function initialPrompt(wordInput) {
     return wordInput
 };
 
-let simpleScore;
-function simpleScorer(oneWord){  
+let simpleScore=function(oneWord){  
    simpleScore = oneWord.length;
     return console.log(`Score for ${oneWord}: ${simpleScore} \n`);
       }
@@ -86,31 +85,34 @@ for (let i = 0; i < scrabbleScore.length; i++) {
 }
 
 let scrabbleScore;
+/*
+    let simpleObject=function (word1){
+      return simpleScorer(word1);
+     }
+    let vowelBonusObject =function (word1){
+     return vowelBonusScorer(word1);
+     }
+    let scrabbleObject =function (word){
+     return scrabbleScorer(word);
+    }*/
 
 const scoringAlgorithms = [
-  
-  simpleObject = {
+  {
     'name': 'Simple Score',
     'Description':'One point per character',
-    'score': function (word1){
-      simpleScorer(word1)
-    return }
+    'scoringFunction': simpleScore
   },
 
-  vowelBonusObject = {
+   {
     'name': 'Vowel Bonus Score',
     'Description':'Vowels are worth 3 points',
-    'score': function (word1){
-      vowelBonusScorer(word1);
-    return }
+    'scoringFunction': vowelBonusScorer
   },
   
-  scrabbleObject = {
+   {
     'name': 'Scrabble Score',
     'Description':'Uses scrabble point system',
-    'score': function (word){
-      scrabbleScorer(word);
-    return  }
+    'scoringFunction': scrabbleScorer
   }
   
   ];
@@ -122,15 +124,15 @@ function scorerPrompt(wordInput2) {
 
   if (selectAlgorithms==0){    
        console.log("Algorithm Name: "+scoringAlgorithms[0].name);
-       console.log(scoringAlgorithms[0].score(wordInput2));
+       console.log(scoringAlgorithms[0].scoringFunction(wordInput2));
   }     
      else if(selectAlgorithms==1){
        console.log("Algorithm Name: "+scoringAlgorithms[1].name);
-       console.log(scoringAlgorithms[1].score(wordInput2));
+       console.log(scoringAlgorithms[1].scoringFunction(wordInput2));
      }
      else if(selectAlgorithms==2){
        console.log("Algorithm Name: "+scoringAlgorithms[2].name);
-       console.log(scoringAlgorithms[2].score(wordInput2));
+       console.log(scoringAlgorithms[2].scoringFunction(wordInput2));
      }
      
        return "";
