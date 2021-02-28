@@ -38,9 +38,11 @@ function initialPrompt(wordInput) {
     return wordInput
 };
 
-let simpleScore=function(oneWord){  
-   simpleScore = oneWord.length;
-    return console.log(`Score for ${oneWord}: ${simpleScore} \n`);
+let simpleScore=function(oneWord){ 
+  let pointScore; 
+   pointScore = oneWord.length;
+    //return console.log(`Score for ${oneWord}: ${pointScore} \n`);
+    return pointScore;
       }
   
 const vowelStr= {
@@ -48,22 +50,21 @@ const vowelStr= {
   3: ['A', 'E', 'I', 'O','U',]
 };
 
-let vowelBonusScore;
-function vowelBonusScorer(oneWord){
+let vowelBonusScore=function (oneWord){
 
-  vowelBonusScore=oneWord.toUpperCase();
+  let pointScore=oneWord.toUpperCase();
   
   let newvowelScoreValue=0;
-for (let i = 0; i < vowelBonusScore.length; i++) {
+for (let i = 0; i < pointScore.length; i++) {
  
 	  for (const vowelScoreValue in vowelStr) {
  
-		 if (vowelStr[vowelScoreValue].includes(vowelBonusScore[i])) {
+		 if (vowelStr[vowelScoreValue].includes(pointScore[i])) {
        newvowelScoreValue+=parseInt(vowelScoreValue);
 		 }
 	  }
 	}
-	return console.log(`Score for ${vowelBonusScore}: ${newvowelScoreValue} \n`);
+	return newvowelScoreValue;
   }
 
   
@@ -84,17 +85,15 @@ for (let i = 0; i < scrabbleScore.length; i++) {
     return console.log(`Score for ${scrabbleScore}: ${newScrabbleScore} \n`);
 }
 
-let scrabbleScore;
-/*
-    let simpleObject=function (word1){
-      return simpleScorer(word1);
-     }
-    let vowelBonusObject =function (word1){
-     return vowelBonusScorer(word1);
-     }
-    let scrabbleObject =function (word){
-     return scrabbleScorer(word);
-    }*/
+let scrabbleScore=function(oneWord){
+  let pointScore=oneWord.toLowerCase();
+   let newScrabbleScore=0;
+for (let i = 0; i < pointScore.length; i++){
+newScrabbleScore += Number(newPointStructure[pointScore[i]]);
+}
+
+  return newScrabbleScore;
+}
 
 const scoringAlgorithms = [
   {
@@ -124,15 +123,20 @@ function scorerPrompt(wordInput2) {
 
   if (selectAlgorithms==0){    
        console.log("Algorithm Name: "+scoringAlgorithms[0].name);
-       console.log(scoringAlgorithms[0].scoringFunction(wordInput2));
+       let xpoint=scoringAlgorithms[0].scoringFunction(wordInput2);
+       console.log(`Score for ${wordInput2}: ${xpoint} \n`);
+       
   }     
      else if(selectAlgorithms==1){
        console.log("Algorithm Name: "+scoringAlgorithms[1].name);
-       console.log(scoringAlgorithms[1].scoringFunction(wordInput2));
+       let xpoint=scoringAlgorithms[1].scoringFunction(wordInput2);
+       console.log(`Score for ${wordInput2}: ${xpoint} \n`);
      }
      else if(selectAlgorithms==2){
        console.log("Algorithm Name: "+scoringAlgorithms[2].name);
-       console.log(scoringAlgorithms[2].scoringFunction(wordInput2));
+       let xpoint=scoringAlgorithms[2].scoringFunction(wordInput2);
+       console.log(`Score for ${wordInput2}: ${xpoint} \n`);
+       
      }
      
        return "";
@@ -155,7 +159,7 @@ return newPointStructure;
 
 }
 
-
+/*
 function scrabbleScorer(oneWord){
   scrabbleScore=oneWord.toLowerCase();
    let newScrabbleScore=0;
@@ -164,7 +168,7 @@ newScrabbleScore += Number(newPointStructure[scrabbleScore[i]]);
 }
 
   return console.log(`Score for ${oneWord}: ${newScrabbleScore} \n`);
-}
+}*/
   
 function runProgram() {
   newPointStructure=transform(oldPointStructure);
