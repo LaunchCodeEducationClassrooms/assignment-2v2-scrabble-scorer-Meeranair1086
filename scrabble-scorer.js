@@ -32,28 +32,142 @@ function oldScrabbleScorer(word) {
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
 
-function initialPrompt() {
-   console.log("Let's play some scrabble! Enter a word:");
+function initialPrompt(wordInput) {
+   console.log("Let's play some scrabble! \n");
+   wordInput=input.question("Enter a Word to score: ");
+    return wordInput
 };
 
 let simpleScore;
+function simpleScorer(oneWord){  
+   simpleScore = oneWord.length;
+    return console.log(`Score for ${oneWord}: ${simpleScore} \n`);
+      }
+  
+const vowelStr= {
+  1: [ 'L', 'N', 'R', 'S', 'T','D', 'G','B', 'C', 'M', 'P','F', 'H', 'V', 'W', 'Y','K','J', 'X','Q', 'Z'],
+  3: ['A', 'E', 'I', 'O','U',]
+};
 
 let vowelBonusScore;
+function vowelBonusScorer(oneWord){
+
+  vowelBonusScore=oneWord.toUpperCase();
+  
+  let newvowelScoreValue=0;
+for (let i = 0; i < vowelBonusScore.length; i++) {
+ 
+	  for (const vowelScoreValue in vowelStr) {
+ 
+		 if (vowelStr[vowelScoreValue].includes(vowelBonusScore[i])) {
+       newvowelScoreValue+=parseInt(vowelScoreValue);
+		 }
+	  }
+	}
+	return console.log(`Score for ${vowelBonusScore}: ${newvowelScoreValue} \n`);
+  }
+
+  let simpleObject = {
+    'name': 'Simple Score',
+    'Description':'One point per character',
+    'score': function (word1){
+      simpleScorer(word1)
+    return }
+  };
+
+  let vowelBonusObject = {
+    'name': 'Vowel Bonus Score',
+    'Description':'Vowels are worth 3 points',
+    'score': function (word1){
+      vowelBonusScorer(word1);
+    return }
+  };
+  
+  let scrabbleObject = {
+    'name': 'Scrabble Score',
+    'Description':'Uses scrabble point system',
+    'score': function (word){
+      scrabbleScorer(word);
+    return  }
+  }
+
+
+function oldScrabbleScorer(oneWord){
+  scrabbleScore=oneWord.toUpperCase();
+    let newScrabbleScore=0;
+for (let i = 0; i < scrabbleScore.length; i++) {
+ 
+	  for (const scrabbleScoreValue in oldPointStructure) {
+ 
+		 if (oldPointStructure[scrabbleScoreValue].includes(scrabbleScore[i])) {
+       newScrabbleScore+=parseInt(scrabbleScoreValue);
+    }
+    }
+  }
+    return console.log(`Score for ${scrabbleScore}: ${newScrabbleScore} \n`);
+}
 
 let scrabbleScore;
 
-const scoringAlgorithms = [];
+const scoringAlgorithms = [simpleObject,vowelBonusObject,scrabbleObject];
 
-function scorerPrompt() {}
+function scorerPrompt(wordInput2) {
+  
+  const input1 = require('readline-sync');
+  let selectAlgorithms = input1.question("Which scoring algorithm would you like to use?\n\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\nEnter 0, 1, or 2: ");
 
-function transform() {};
+  if (selectAlgorithms==0){    
+       console.log("Algorithm Name: "+scoringAlgorithms[0].name);
+       console.log(scoringAlgorithms[0].score(wordInput2));
+  }     
+     else if(selectAlgorithms==1){
+       console.log("Algorithm Name: "+scoringAlgorithms[1].name);
+       console.log(scoringAlgorithms[1].score(wordInput2));
+     }
+     else if(selectAlgorithms==2){
+       console.log("Algorithm Name: "+scoringAlgorithms[2].name);
+       console.log(scoringAlgorithms[2].score(wordInput2));
+     }
+     
+       return "";
+}
 
-let newPointStructure;
 
+let newPointStructure={};
+
+function transform(oldPointObject) {
+
+       for (let item in oldPointObject) {
+for (let i = 0; i < oldPointObject[item].length; i++) {
+  newPointStructure[(oldPointObject[item][i]).toLowerCase()] = item;
+}
+
+//newPointStructure[' '] = 0;
+}
+
+return newPointStructure;
+
+}
+
+
+function scrabbleScorer(oneWord){
+  scrabbleScore=oneWord.toLowerCase();
+   let newScrabbleScore=0;
+for (let i = 0; i < scrabbleScore.length; i++){
+newScrabbleScore += Number(newPointStructure[scrabbleScore[i]]);
+}
+
+  return console.log(`Score for ${oneWord}: ${newScrabbleScore} \n`);
+}
+  
 function runProgram() {
-   initialPrompt();
+  newPointStructure=transform(oldPointStructure);
+   let wordInput1=initialPrompt();
+   console.log(scorerPrompt(wordInput1));  
+   
    
 }
+
 
 // Don't write any code below this line //
 // And don't change these or your program will not run as expected //
