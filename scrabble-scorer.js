@@ -12,6 +12,8 @@ const oldPointStructure = {
   10: ['Q', 'Z']
 };
 
+let newPointStructure=transform(oldPointStructure);
+
 function oldScrabbleScorer(word) {
 	word = word.toUpperCase();
 	let letterPoints = "";
@@ -31,6 +33,17 @@ function oldScrabbleScorer(word) {
 
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
+
+
+let scrabbleScore=function(oneWord){
+  let pointScore=oneWord.toLowerCase();
+   let newScrabbleScore=0;
+for (let i = 0; i < pointScore.length; i++){
+newScrabbleScore += Number(newPointStructure[pointScore[i]]);
+}
+
+  return newScrabbleScore;
+}
 
 function initialPrompt(wordInput) {
    console.log("Let's play some scrabble! \n");
@@ -85,15 +98,7 @@ for (let i = 0; i < scrabbleScore.length; i++) {
     return console.log(`Score for ${scrabbleScore}: ${newScrabbleScore} \n`);
 }
 
-let scrabbleScore=function(oneWord){
-  let pointScore=oneWord.toLowerCase();
-   let newScrabbleScore=0;
-for (let i = 0; i < pointScore.length; i++){
-newScrabbleScore += Number(newPointStructure[pointScore[i]]);
-}
 
-  return newScrabbleScore;
-}
 
 const scoringAlgorithms = [
   {
@@ -143,16 +148,16 @@ function scorerPrompt(wordInput2) {
 }
 
 
-let newPointStructure={};
+
 
 function transform(oldPointObject) {
-
+  let newPointStructure={};
        for (let item in oldPointObject) {
 for (let i = 0; i < oldPointObject[item].length; i++) {
-  newPointStructure[(oldPointObject[item][i]).toLowerCase()] = item;
+  newPointStructure[(oldPointObject[item][i]).toLowerCase()] = Number(item);
 }
 
-newPointStructure[' '] = 0;
+//newPointStructure[' '] = 0;
 }
 
 return newPointStructure;
@@ -171,7 +176,7 @@ newScrabbleScore += Number(newPointStructure[scrabbleScore[i]]);
 }*/
   
 function runProgram() {
-  newPointStructure=transform(oldPointStructure);
+  //newPointStructure=transform(oldPointStructure);
    let wordInput1=initialPrompt();
    console.log(scorerPrompt(wordInput1));  
    
